@@ -5,14 +5,14 @@ import 'package:hive_flutter/hive_flutter.dart';
 import 'package:path_provider/path_provider.dart';
 import 'models/clipboard_item.dart';
 
-// void main() async {
-//   WidgetsFlutterBinding.ensureInitialized();
-//   final appDocumentDir = await getApplicationDocumentsDirectory();
-//   await Hive.initFlutter(appDocumentDir.path);
-//   Hive.registerAdapter(ClipboardItemAdapter());
-//   await Hive.openBox<ClipboardItem>('clipboard');
-//   runApp(MyApp());
-// }
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  final appDocumentDir = await getApplicationDocumentsDirectory();
+  await Hive.initFlutter(appDocumentDir.path);
+  Hive.registerAdapter(ClipboardItemAdapter());
+  await Hive.openBox<ClipboardItem>('clipboard');
+  runApp(MyApp());
+}
 
 class MyApp extends StatelessWidget {
   @override
@@ -56,7 +56,9 @@ class _ClipboardManagerState extends State<ClipboardManager> {
       body: ValueListenableBuilder(
         valueListenable: clipboardBox.listenable(),
         builder: (context, Box<ClipboardItem> box, _) {
-          final items = box.values.where((item) => item.content.contains(searchQuery)).toList();
+          final items = box.values
+              .where((item) => item.content.contains(searchQuery))
+              .toList();
           if (items.isEmpty) {
             return Center(
               child: Text('No items in clipboard history.'),
@@ -86,7 +88,9 @@ class _ClipboardManagerState extends State<ClipboardManager> {
                       },
                     ),
                     IconButton(
-                      icon: Icon(item.isFavorite ? Icons.favorite : Icons.favorite_border),
+                      icon: Icon(item.isFavorite
+                          ? Icons.favorite
+                          : Icons.favorite_border),
                       onPressed: () {
                         setState(() {
                           item.isFavorite = !item.isFavorite;
@@ -149,7 +153,9 @@ class ClipboardSearchDelegate extends SearchDelegate {
 
   @override
   Widget buildResults(BuildContext context) {
-    final results = clipboardBox.values.where((item) => item.content.contains(query)).toList();
+    final results = clipboardBox.values
+        .where((item) => item.content.contains(query))
+        .toList();
 
     return ListView.builder(
       itemCount: results.length,
@@ -172,7 +178,9 @@ class ClipboardSearchDelegate extends SearchDelegate {
 
   @override
   Widget buildSuggestions(BuildContext context) {
-    final suggestions = clipboardBox.values.where((item) => item.content.contains(query)).toList();
+    final suggestions = clipboardBox.values
+        .where((item) => item.content.contains(query))
+        .toList();
 
     return ListView.builder(
       itemCount: suggestions.length,
