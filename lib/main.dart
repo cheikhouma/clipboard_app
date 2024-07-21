@@ -5,14 +5,14 @@ import 'package:hive_flutter/hive_flutter.dart';
 import 'package:path_provider/path_provider.dart';
 import 'models/clipboard_item.dart';
 
-void main() async {
-  WidgetsFlutterBinding.ensureInitialized();
-  final appDocumentDir = await getApplicationDocumentsDirectory();
-  await Hive.initFlutter(appDocumentDir.path);
-  Hive.registerAdapter(ClipboardItemAdapter());
-  await Hive.openBox<ClipboardItem>('clipboard');
-  runApp(MyApp());
-}
+// void main() async {
+//   WidgetsFlutterBinding.ensureInitialized();
+//   final appDocumentDir = await getApplicationDocumentsDirectory();
+//   await Hive.initFlutter(appDocumentDir.path);
+//   Hive.registerAdapter(ClipboardItemAdapter());
+//   await Hive.openBox<ClipboardItem>('clipboard');
+//   runApp(MyApp());
+// }
 
 class MyApp extends StatelessWidget {
   @override
