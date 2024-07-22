@@ -96,7 +96,7 @@ Fichier généré automatiquement par Hive. Utilisé pour la sérialisation et l
 
 ## Auteur
 
-- Cheikh Oumar DIALLO
+- Cheikh Oumar DIALLO (dcheikhoumard@gmail.com)
 
 ## Licence
 
